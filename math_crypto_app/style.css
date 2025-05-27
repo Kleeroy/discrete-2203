@@ -1,0 +1,49 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.tab-content {
+    background-color: white;
+    min-height: 400px;
+}
+
+.canvas-container {
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: white;
+}
+
+.matrix-input {
+    display: inline-block;
+    width: 50px;
+    margin: 2px;
+    text-align: center;
+}
+
+.matrix-row {
+    margin-bottom: 5px;
+}
+
+.result-box {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.step {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.factor-tree {
+    font-family: monospace;
+    white-space: pre;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+}
