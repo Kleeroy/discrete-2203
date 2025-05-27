@@ -1,341 +1,40 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math & Cryptography Toolkit</title>
-    <link rel="stylesheet" href="assets/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discrete Math Calculator</title>
+  <link rel="stylesheet" href="assets/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="container mt-4">
-        <h1 class="text-center mb-4">Math & Cryptography Toolkit</h1>
-        
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="prime-tab" data-toggle="tab" href="#prime" role="tab">Prime Numbers</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="crt-tab" data-toggle="tab" href="#crt" role="tab">Chinese Remainder</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="exponent-tab" data-toggle="tab" href="#exponent" role="tab">Exponentiation</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="fermat-tab" data-toggle="tab" href="#fermat" role="tab">Fermat's Theorem</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="caesar-tab" data-toggle="tab" href="#caesar" role="tab">Caesar Cipher</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="rsa-tab" data-toggle="tab" href="#rsa" role="tab">RSA</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="matrix-tab" data-toggle="tab" href="#matrix" role="tab">Matrices</a>
-            </li>
-        </ul>
-        
-        <div class="tab-content p-3 border border-top-0 rounded-bottom" id="myTabContent">
-            <!-- Prime Numbers Tab -->
-            <div class="tab-pane fade show active" id="prime" role="tabpanel">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3>Prime Factorization</h3>
-                        <div class="form-group">
-                            <label for="prime-number-input">Enter a number:</label>
-                            <input type="number" class="form-control" id="prime-number-input" min="2">
-                        </div>
-                        <button id="prime-factorize-btn" class="btn btn-primary">Factorize</button>
-                        
-                        <div class="result-box mt-3">
-                            <h5>Division Method:</h5>
-                            <div id="division-method-result"></div>
-                            
-                            <h5 class="mt-3">Prime Factors:</h5>
-                            <div id="prime-factors-result"></div>
-                            
-                            <h5 class="mt-3">Factor Tree:</h5>
-                            <div class="factor-tree" id="factor-tree-result"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <h3>Prime Checker</h3>
-                        <div class="form-group">
-                            <label for="prime-check-input">Enter a number:</label>
-                            <input type="number" class="form-control" id="prime-check-input">
-                        </div>
-                        <button id="prime-check-btn" class="btn btn-primary">Check</button>
-                        
-                        <div class="result-box mt-3">
-                            <div id="prime-check-result"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chinese Remainder Theorem Tab -->
-            <div class="tab-pane fade" id="crt" role="tabpanel">
-                <h3>Chinese Remainder Theorem</h3>
-                <p>Solve x ≡ a₁ mod m₁ and x ≡ a₂ mod m₂</p>
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="crt-a1">a₁:</label>
-                            <input type="number" class="form-control" id="crt-a1">
-                        </div>
-                        <div class="form-group">
-                            <label for="crt-m1">m₁:</label>
-                            <input type="number" class="form-control" id="crt-m1">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="crt-a2">a₂:</label>
-                            <input type="number" class="form-control" id="crt-a2">
-                        </div>
-                        <div class="form-group">
-                            <label for="crt-m2">m₂:</label>
-                            <input type="number" class="form-control" id="crt-m2">
-                        </div>
-                    </div>
-                </div>
-                
-                <button id="crt-calculate-btn" class="btn btn-primary">Calculate</button>
-                
-                <div class="result-box mt-3">
-                    <div id="crt-result"></div>
-                </div>
-            </div>
-
-            <!-- Exponentiation Tab -->
-            <div class="tab-pane fade" id="exponent" role="tabpanel">
-                <h3>Exponentiation Methods</h3>
-                
-                <ul class="nav nav-tabs" id="exponentTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="naive-tab" data-toggle="tab" href="#naive" role="tab">Naïve Method</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="squaring-tab" data-toggle="tab" href="#squaring" role="tab">Exponentiation by Squaring</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="modular-tab" data-toggle="tab" href="#modular" role="tab">Modular Exponentiation</a>
-                    </li>
-                </ul>
-                
-                <div class="tab-content p-3 border border-top-0 rounded-bottom">
-                    <!-- Naïve Method -->
-                    <div class="tab-pane fade show active" id="naive" role="tabpanel">
-                        <div class="form-group">
-                            <label for="naive-base">Base:</label>
-                            <input type="number" class="form-control" id="naive-base">
-                        </div>
-                        <div class="form-group">
-                            <label for="naive-exponent">Exponent:</label>
-                            <input type="number" class="form-control" id="naive-exponent">
-                        </div>
-                        <button id="naive-exponent-btn" class="btn btn-primary">Calculate</button>
-                        
-                        <div class="result-box mt-3">
-                            <div id="naive-result"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Exponentiation by Squaring -->
-                    <div class="tab-pane fade" id="squaring" role="tabpanel">
-                        <div class="form-group">
-                            <label for="squaring-base">Base:</label>
-                            <input type="number" class="form-control" id="squaring-base">
-                            <label for="squaring-exponent">Exponent:</label>
-                            <input type="number" class="form-control" id="squaring-exponent">
-                        </div>
-                        <button id="squaring-exponent-btn" class="btn btn-primary">Calculate</button>
-                        
-                        <div class="result-box mt-3">
-                            <div id="squaring-result"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Modular Exponentiation -->
-                    <div class="tab-pane fade" id="modular" role="tabpanel">
-                        <div class="form-group">
-                            <label for="modular-base">Base:</label>
-                            <input type="number" class="form-control" id="modular-base">
-                        </div>
-                        <div class="form-group">
-                            <label for="modular-exponent">Exponent:</label>
-                            <input type="number" class="form-control" id="modular-exponent">
-                        </div>
-                        <div class="form-group">
-                            <label for="modular-modulus">Modulus:</label>
-                            <input type="number" class="form-control" id="modular-modulus">
-                        </div>
-                        <button id="modular-exponent-btn" class="btn btn-primary">Calculate</button>
-                        
-                        <div class="result-box mt-3">
-                            <div id="modular-result"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Fermat's Little Theorem Tab -->
-            <div class="tab-pane fade" id="fermat" role="tabpanel">
-                <h3>Fermat's Little Theorem</h3>
-                <p>For a prime p and integer a not divisible by p: a^(p-1) ≡ 1 mod p</p>
-                <div class="form-group">
-                    <label for="fermat-a">a:</label>
-                    <input type="number" class="form-control" id="fermat-a">
-                </div>
-                <div class="form-group">
-                    <label for="fermat-p">p (must be prime):</label>
-                    <input type="number" class="form-control" id="fermat-p">
-                </div>
-
-                <button id="fermat-calculate-btn" class="btn btn-primary">Verify</button>
-
-                <div class="result-box mt-3">
-                    <div id="fermat-result"></div>
-                </div>
-
-            </div>
-
-            <!-- Caesar Cipher Tab -->
-            <div class="tab-pane fade" id="caesar" role="tabpanel">
-                <h3>Caesar Cipher</h3>
-                <div class="form-group">
-                    <label for="caesar-text">Text:</label>
-                    <input type="text" class="form-control" id="caesar-text">
-                </div>
-                <div class="form-group">
-                    <label for="caesar-shift">Shift (0-25):</label>
-                    <input type="number" class="form-control" id="caesar-shift" min="0" max="25">
-                </div>
-
-                <button id="caesar-encrypt-btn" class="btn btn-primary">Encrypt</button>
-                <button id="caesar-decrypt-btn" class="btn btn-secondary">Decrypt</button>
-
-                <div class="result-box mt-3">
-                    <div id="caesar-result"></div>
-                </div>
-
-            </div>
-
-            <!-- RSA Tab -->
-            <div class="tab-pane fade" id="rsa" role="tabpanel">
-                <h3>RSA Cryptography</h3>
-
-                    <ul class="nav nav-tabs" id="rsaTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="generate-tab" data-toggle="tab" href="#generate" role="tab">Key Generation</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="encrypt-tab" data-toggle="tab" href="#encrypt" role="tab">Encryption</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="decrypt-tab" data-toggle="tab" href="#decrypt" role="tab">Decryption</a>
-                    </li>
-                </ul>
-
-                <div class="tab-content p-3 border border-top-0 rounded-bottom">
-                    <!-- Key Generation -->
-                    <div class="tab-pane fade show active" id="generate" role="tabpanel">
-                        <div class="form-group">
-                            <label for="rsa-p">Prime p:</label>
-                            <input type="number" class="form-control" id="rsa-p">
-                        </div>
-                        <div class="form-group">
-                            <label for="rsa-q">Prime q:</label>
-                            <input type="number" class="form-control" id="rsa-q">
-                        </div>
-                        <button id="rsa-generate-btn" class="btn btn-primary">Generate Keys</button>
-                        
-                        <div class="result-box mt-3">
-                            <div id="rsa-result"></div>
-                        </div>
-                        
-                        <div class="form-group mt-3">
-                            <label for="rsa-public-key">Public Key (e,n):</label>
-                            <input type="text" class="form-control" id="rsa-public-key" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="rsa-private-key">Private Key (d,n):</label>
-                            <input type="text" class="form-control" id="rsa-private-key" readonly>
-                        </div>
-                    </div>
-                    
-                    <!-- Encryption -->
-                    <div class="tab-pane fade" id="encrypt" role="tabpanel">
-                        <div class="form-group">
-                            <label for="rsa-message">Message to encrypt:</label>
-                            <input type="text" class="form-control" id="rsa-message">
-                        </div>
-                        <div class="form-group">
-                            <label for="rsa-public-key-encrypt">Public Key (e,n):</label>
-                            <input type="text" class="form-control" id="rsa-public-key" placeholder="e.g., 5,3233">
-                        </div>
-                        <button id="rsa-encrypt-btn" class="btn btn-primary">Encrypt</button>
-                        
-                        <div class="result-box mt-3">
-                            <div id="rsa-encryption-result"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Decryption -->
-                    <div class="tab-pane fade" id="decrypt" role="tabpanel">
-                        <div class="form-group">
-                            <label for="rsa-encrypted">Encrypted message (space-separated numbers):</label>
-                            <input type="text" class="form-control" id="rsa-encrypted">
-                        </div>
-                        <div class="form-group">
-                            <label for="rsa-private-key-decrypt">Private Key (d,n):</label>
-                            <input type="text" class="form-control" id="rsa-private-key" placeholder="e.g., 2753,3233">
-                        </div>
-                        <button id="rsa-decrypt-btn" class="btn btn-primary">Decrypt</button>
-                        
-                        <div class="result-box mt-3">
-                            <div id="rsa-decryption-result"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="matrix-rows">Rows:</label>
-                    <input type="number" class="form-control" id="matrix-rows" min="1" value="2">
-                </div>
-                <div class="form-group">
-                    <label for="matrix-cols">Columns:</label>
-                    <input type="number" class="form-control" id="matrix-cols" min="1" value="2">
-                </div>
-                <button id="matrix-create-btn" class="btn btn-primary">Create Matrix Inputs</button>
-
-                <div id="matrix-inputs" class="mt-3"></div>
-
-                <div class="form-group mt-3">
-                    <label for="matrix-operation">Operation:</label>
-                    <select class="form-control" id="matrix-operation">
-                        <option value="add">Addition (A + B)</option>
-                        <option value="subtract">Subtraction (A - B)</option>
-                        <option value="multiply">Multiplication (A × B)</option>
-                        <option value="scalar">Scalar Multiplication (k × A)</option>
-                        <option value="transpose">Transpose (Aᵀ)</option>
-                        <option value="determinant">Determinant (|A|)</option>
-                    </select>
-                </div>
-
-                <button id="matrix-calculate-btn" class="btn btn-primary">Calculate</button>
-
-                <div class="result-box mt-3">
-                    <div id="matrix-result"></div>
-                </div>
-
-            </div>
-        </div>
+<body class="bg-dark text-light">
+  <div class="container py-5">
+    <h1 class="text-center mb-5">Discrete Mathematics Calculator</h1>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <a href="prime.html" class="tool-card text-decoration-none">Prime Numbers</a>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <a href="crt.html" class="tool-card text-decoration-none">Chinese Remainder Theorem</a>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <a href="exponentiation.html" class="tool-card text-decoration-none">Exponentiation</a>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <a href="fermat.html" class="tool-card text-decoration-none">Fermat's Theorem</a>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <a href="caesar.html" class="tool-card text-decoration-none">Caesar Cipher</a>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <a href="rsa.html" class="tool-card text-decoration-none">RSA Encryption</a>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <a href="matrix.html" class="tool-card text-decoration-none">Matrix Calculator</a>
+      </div>
     </div>
-
-    <script src="assets/bootstrap.min.js"></script>
-    <script src="script.js"></script>
+  </div>
+  <script src="assets/bootstrap.min.js"></script>
 </body>
 </html>

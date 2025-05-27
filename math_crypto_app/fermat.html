@@ -1,0 +1,35 @@
+<!-- fermat.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fermat's Theorem</title>
+  <link rel="stylesheet" href="assets/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark text-light">
+  <div class="container py-5">
+    <h2 class="text-center mb-4">Fermat's Little Theorem</h2>
+    <p class="text-center">For a prime p and integer a not divisible by p: a^(p-1) ≡ 1 mod p</p>
+    <div class="mb-3">
+      <label for="fermat-a" class="form-label">a:</label>
+      <input type="number" id="fermat-a" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="fermat-p" class="form-label">p (must be prime):</label>
+      <input type="number" id="fermat-p" class="form-control">
+    </div>
+    <button id="fermat-calculate-btn" class="btn btn-turquoise">Verify</button>
+    <div class="result-box mt-4">
+      <div id="fermat-result"></div>
+    </div>
+    <div class="mt-5">
+      <a href="index.html" class="btn btn-secondary">Back to Home</a>
+    </div>
+  </div>
+
+  <script src="assets/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

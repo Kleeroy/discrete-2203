@@ -1,0 +1,85 @@
+<!-- exponentiation.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exponentiation</title>
+  <link rel="stylesheet" href="assets/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark text-light">
+  <div class="container py-5">
+    <h2 class="text-center mb-4">Exponentiation Methods</h2>
+    <ul class="nav nav-tabs" id="exponentTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="naive-tab" data-bs-toggle="tab" href="#naive" role="tab">Naïve</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="squaring-tab" data-bs-toggle="tab" href="#squaring" role="tab">Squaring</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="modular-tab" data-bs-toggle="tab" href="#modular" role="tab">Modular</a>
+      </li>
+    </ul>
+
+    <div class="tab-content mt-4">
+      <div class="tab-pane fade show active" id="naive" role="tabpanel">
+        <div class="mb-3">
+          <label for="naive-base" class="form-label">Base:</label>
+          <input type="number" id="naive-base" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="naive-exponent" class="form-label">Exponent:</label>
+          <input type="number" id="naive-exponent" class="form-control">
+        </div>
+        <button id="naive-exponent-btn" class="btn btn-yellow">Calculate</button>
+        <div class="result-box mt-4">
+          <div id="naive-result"></div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="squaring" role="tabpanel">
+        <div class="mb-3">
+          <label for="squaring-base" class="form-label">Base:</label>
+          <input type="number" id="squaring-base" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="squaring-exponent" class="form-label">Exponent:</label>
+          <input type="number" id="squaring-exponent" class="form-control">
+        </div>
+        <button id="squaring-exponent-btn" class="btn btn-yellow">Calculate</button>
+        <div class="result-box mt-4">
+          <div id="squaring-result"></div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="modular" role="tabpanel">
+        <div class="mb-3">
+          <label for="modular-base" class="form-label">Base:</label>
+          <input type="number" id="modular-base" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="modular-exponent" class="form-label">Exponent:</label>
+          <input type="number" id="modular-exponent" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="modular-modulus" class="form-label">Modulus:</label>
+          <input type="number" id="modular-modulus" class="form-control">
+        </div>
+        <button id="modular-exponent-btn" class="btn btn-yellow">Calculate</button>
+        <div class="result-box mt-4">
+          <div id="modular-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5">
+      <a href="index.html" class="btn btn-secondary">Back to Home</a>
+    </div>
+  </div>
+
+  <script src="assets/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

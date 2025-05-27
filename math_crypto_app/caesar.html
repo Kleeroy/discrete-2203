@@ -1,0 +1,34 @@
+<!-- caesar.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caesar Cipher</title>
+  <link rel="stylesheet" href="assets/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark text-light">
+  <div class="container py-5">
+    <h2 class="text-center mb-4">Caesar Cipher</h2>
+    <div class="mb-3">
+      <label for="caesar-text" class="form-label">Text:</label>
+      <input type="text" id="caesar-text" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="caesar-shift" class="form-label">Shift (0-25):</label>
+      <input type="number" id="caesar-shift" class="form-control" min="0" max="25">
+    </div>
+    <button id="caesar-encrypt-btn" class="btn btn-turquoise me-2">Encrypt</button>
+    <button id="caesar-decrypt-btn" class="btn btn-yellow">Decrypt</button>
+    <div class="result-box mt-4">
+      <div id="caesar-result"></div>
+    </div>
+    <div class="mt-5">
+      <a href="index.html" class="btn btn-secondary">Back to Home</a>
+    </div>
+  </div>
+  <script src="assets/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
