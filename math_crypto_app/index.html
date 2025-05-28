@@ -487,6 +487,50 @@
                     matrixResult.innerHTML += row.join(' ') + '<br>';
                 });
             });
+
+            const modularExponentBtn = document.getElementById('modular-exponent-btn');
+            const modularResult = document.getElementById('modular-result');
+
+            modularExponentBtn.addEventListener('click', () => {
+                const base = parseInt(document.getElementById('modular-base').value, 10);
+                const exponent = parseInt(document.getElementById('modular-exponent').value, 10);
+                const modulus = parseInt(document.getElementById('modular-modulus').value, 10);
+
+                if (isNaN(base) || isNaN(exponent) || isNaN(modulus) || modulus <= 0) {
+                    modularResult.innerHTML = '<h5>Error: Please enter valid numbers for base, exponent, and modulus.</h5>';
+                    return;
+                }
+
+                let steps = `<h5>${base}^${exponent} mod ${modulus}</h5>`;
+                steps += '<h6>Step 1: Convert exponent to binary</h6>';
+                const binaryExponent = exponent.toString(2);
+                steps += `${exponent} = ${binaryExponent} (binary)<br>`;
+
+                steps += '<h6>Step 2: Calculate modular powers</h6>';
+                const powers = [];
+                let currentPower = base;
+                for (let i = 0; i < binaryExponent.length; i++) {
+                    if (binaryExponent[binaryExponent.length - 1 - i] === '1') {
+                        powers.push(currentPower % modulus);
+                        steps += `${base}^(2^${i}) mod ${modulus} = ${currentPower % modulus}<br>`;
+                    }
+                    currentPower = (currentPower * currentPower) % modulus;
+                }
+
+                steps += '<h6>Step 3: Combine results</h6>';
+                let result = 1;
+                powers.forEach(power => {
+                    result = (result * power) % modulus;
+                });
+                steps += `(${base}^${exponent}) mod ${modulus} = ${result}<br>`;
+
+                steps += '<h6>Manual division:</h6>';
+                steps += `${result} ÷ ${modulus} = ${Math.floor(result / modulus)} remainder ${result % modulus}<br>`;
+                steps += `${result} = ${Math.floor(result / modulus)} × ${modulus} + ${result % modulus}<br>`;
+                steps += `<h5>Therefore: ${base}^${exponent} mod ${modulus} = ${result % modulus}</h5>`;
+
+                modularResult.innerHTML = steps;
+            });
         });
     </script>
 </body>
