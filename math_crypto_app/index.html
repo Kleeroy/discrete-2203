@@ -13,31 +13,31 @@
         
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="prime-tab" data-toggle="tab" href="#prime" role="tab">Prime Numbers</a>
+                <a class="nav-link active" id="prime-tab" data-bs-toggle="tab" href="#prime" role="tab" aria-controls="prime" aria-selected="true">Prime Numbers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="crt-tab" data-toggle="tab" href="#crt" role="tab">Chinese Remainder</a>
+                <a class="nav-link" id="crt-tab" data-bs-toggle="tab" href="#crt" role="tab" aria-controls="crt" aria-selected="false">Chinese Remainder</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="exponent-tab" data-toggle="tab" href="#exponent" role="tab">Exponentiation</a>
+                <a class="nav-link" id="exponent-tab" data-bs-toggle="tab" href="#exponent" role="tab" aria-controls="exponent" aria-selected="false">Exponentiation</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="fermat-tab" data-toggle="tab" href="#fermat" role="tab">Fermat's Theorem</a>
+                <a class="nav-link" id="fermat-tab" data-bs-toggle="tab" href="#fermat" role="tab" aria-controls="fermat" aria-selected="false">Fermat's Theorem</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="caesar-tab" data-toggle="tab" href="#caesar" role="tab">Caesar Cipher</a>
+                <a class="nav-link" id="caesar-tab" data-bs-toggle="tab" href="#caesar" role="tab" aria-controls="caesar" aria-selected="false">Caesar Cipher</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="rsa-tab" data-toggle="tab" href="#rsa" role="tab">RSA</a>
+                <a class="nav-link" id="rsa-tab" data-bs-toggle="tab" href="#rsa" role="tab" aria-controls="rsa" aria-selected="false">RSA</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="matrix-tab" data-toggle="tab" href="#matrix" role="tab">Matrices</a>
+                <a class="nav-link" id="matrix-tab" data-bs-toggle="tab" href="#matrix" role="tab" aria-controls="matrix" aria-selected="false">Matrices</a>
             </li>
         </ul>
         
         <div class="tab-content p-3 border border-top-0 rounded-bottom" id="myTabContent">
             <!-- Prime Numbers Tab -->
-            <div class="tab-pane fade show active" id="prime" role="tabpanel">
+            <div class="tab-pane fade show active" id="prime" role="tabpanel" aria-labelledby="prime-tab">
                 <div class="row">
                     <div class="col-md-6">
                         <h3>Prime Factorization</h3>
@@ -75,7 +75,7 @@
             </div>
 
             <!-- Chinese Remainder Theorem Tab -->
-            <div class="tab-pane fade" id="crt" role="tabpanel">
+            <div class="tab-pane fade" id="crt" role="tabpanel" aria-labelledby="crt-tab">
                 <h3>Chinese Remainder Theorem</h3>
                 <p>Solve x ≡ a₁ mod m₁ and x ≡ a₂ mod m₂</p>
                 
@@ -110,18 +110,18 @@
             </div>
 
             <!-- Exponentiation Tab -->
-            <div class="tab-pane fade" id="exponent" role="tabpanel">
+            <div class="tab-pane fade" id="exponent" role="tabpanel" aria-labelledby="exponent-tab">
                 <h3>Exponentiation Methods</h3>
                 
                 <ul class="nav nav-tabs" id="exponentTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="naive-tab" data-toggle="tab" href="#naive" role="tab">Naïve Method</a>
+                        <a class="nav-link active" id="naive-tab" data-bs-toggle="tab" href="#naive" role="tab">Naïve Method</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="squaring-tab" data-toggle="tab" href="#squaring" role="tab">Exponentiation by Squaring</a>
+                        <a class="nav-link" id="squaring-tab" data-bs-toggle="tab" href="#squaring" role="tab">Exponentiation by Squaring</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="modular-tab" data-toggle="tab" href="#modular" role="tab">Modular Exponentiation</a>
+                        <a class="nav-link" id="modular-tab" data-bs-toggle="tab" href="#modular" role="tab">Modular Exponentiation</a>
                     </li>
                 </ul>
                 
@@ -148,6 +148,8 @@
                         <div class="form-group">
                             <label for="squaring-base">Base:</label>
                             <input type="number" class="form-control" id="squaring-base">
+                        </div>
+                        <div class="form-group">
                             <label for="squaring-exponent">Exponent:</label>
                             <input type="number" class="form-control" id="squaring-exponent">
                         </div>
@@ -182,7 +184,7 @@
             </div>
 
             <!-- Fermat's Little Theorem Tab -->
-            <div class="tab-pane fade" id="fermat" role="tabpanel">
+            <div class="tab-pane fade" id="fermat" role="tabpanel" aria-labelledby="fermat-tab">
                 <h3>Fermat's Little Theorem</h3>
                 <p>For a prime p and integer a not divisible by p: a^(p-1) ≡ 1 mod p</p>
                 <div class="form-group">
@@ -199,11 +201,10 @@
                 <div class="result-box mt-3">
                     <div id="fermat-result"></div>
                 </div>
-
             </div>
 
             <!-- Caesar Cipher Tab -->
-            <div class="tab-pane fade" id="caesar" role="tabpanel">
+            <div class="tab-pane fade" id="caesar" role="tabpanel" aria-labelledby="caesar-tab">
                 <h3>Caesar Cipher</h3>
                 <div class="form-group">
                     <label for="caesar-text">Text:</label>
@@ -220,22 +221,21 @@
                 <div class="result-box mt-3">
                     <div id="caesar-result"></div>
                 </div>
-
             </div>
 
             <!-- RSA Tab -->
-            <div class="tab-pane fade" id="rsa" role="tabpanel">
+            <div class="tab-pane fade" id="rsa" role="tabpanel" aria-labelledby="rsa-tab">
                 <h3>RSA Cryptography</h3>
 
-                    <ul class="nav nav-tabs" id="rsaTab" role="tablist">
+                <ul class="nav nav-tabs" id="rsaTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="generate-tab" data-toggle="tab" href="#generate" role="tab">Key Generation</a>
+                        <a class="nav-link active" id="generate-tab" data-bs-toggle="tab" href="#generate" role="tab">Key Generation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="encrypt-tab" data-toggle="tab" href="#encrypt" role="tab">Encryption</a>
+                        <a class="nav-link" id="encrypt-tab" data-bs-toggle="tab" href="#encrypt" role="tab">Encryption</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="decrypt-tab" data-toggle="tab" href="#decrypt" role="tab">Decryption</a>
+                        <a class="nav-link" id="decrypt-tab" data-bs-toggle="tab" href="#decrypt" role="tab">Decryption</a>
                     </li>
                 </ul>
 
@@ -267,7 +267,7 @@
                     </div>
                     
                     <!-- Encryption -->
-                    <div class="tab-pane fade" id="encrypt" role="tabpanel">
+                    <div class="tab-pane fade" id="encrypt" role="tabpanel" aria-labelledby="encrypt-tab">
                         <div class="form-group">
                             <label for="rsa-message">Message to encrypt:</label>
                             <input type="text" class="form-control" id="rsa-message">
@@ -285,7 +285,7 @@
                     </div>
                     
                     <!-- Decryption -->
-                    <div class="tab-pane fade" id="decrypt" role="tabpanel">
+                    <div class="tab-pane fade" id="decrypt" role="tabpanel" aria-labelledby="decrypt-tab">
                         <div class="form-group">
                             <label for="rsa-encrypted">Encrypted message (space-separated numbers):</label>
                             <input type="text" class="form-control" id="rsa-encrypted">
@@ -302,7 +302,11 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
+            
+            <!-- Matrix Tab -->
+            <div class="tab-pane fade" id="matrix-tab" role="tabpanel" aria-labelledby="matrix-tab">
+                <h3>Matrices</h3>
                 <div class="form-group">
                     <label for="matrix-rows">Rows:</label>
                     <input type="number" class="form-control" id="matrix-rows" min="1" value="2">
@@ -315,6 +319,17 @@
 
                 <div id="matrix-inputs" class="mt-3"></div>
 
+                <!-- Add sections for matrix inputs and calculated output -->
+                <div class="mt-3">
+                    <h5>Matrix Inputs:</h5>
+                    <div id="matrix-inputs-container"></div>
+                </div>
+
+                <div class="mt-3">
+                    <h5>Matrix Result:</h5>
+                    <table id="matrix-display" class="table table-bordered"></table>
+                </div>
+
                 <div class="form-group mt-3">
                     <label for="matrix-operation">Operation:</label>
                     <select class="form-control" id="matrix-operation">
@@ -326,13 +341,11 @@
                         <option value="determinant">Determinant (|A|)</option>
                     </select>
                 </div>
-
                 <button id="matrix-calculate-btn" class="btn btn-primary">Calculate</button>
 
                 <div class="result-box mt-3">
                     <div id="matrix-result"></div>
                 </div>
-
             </div>
         </div>
     </div>

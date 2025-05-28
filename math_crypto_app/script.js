@@ -276,37 +276,49 @@ function calculateModularExponent() {
 
     let result = 1;
     base = base % modulus;
-    let steps = [`Calculating ${base}^${exponent} mod ${modulus}:`];
+    let steps = [`${base}^${exponent} mod ${modulus}`];
 
     // Step 1: Convert exponent to binary
     const binaryExponent = exponent.toString(2);
-    steps.push(`Step 1: ${exponent} = ${binaryExponent} (binary)`);
+    steps.push(`Step 1: Convert exponent to binary`);
+    steps.push(`${exponent} = ${binaryExponent} (binary)`);
 
-    // Step 2: Calculate modular powers for each binary position
+    // Binary breakdown
+    const binaryBreakdown = [];
+    for (let i = 0; i < binaryExponent.length; i++) {
+        if (binaryExponent[binaryExponent.length - 1 - i] === '1') {
+            binaryBreakdown.push(`2^${i}`);
+        }
+    }
+    steps.push(`Binary breakdown: ${exponent} = ${binaryBreakdown.join(' + ')}`);
+
+    // Step 2: Calculate modular powers
+    steps.push(`Step 2: Calculate modular powers`);
     let modularPowers = [];
     let currentBase = base;
     for (let i = 0; i < binaryExponent.length; i++) {
         if (binaryExponent[binaryExponent.length - 1 - i] === '1') {
             modularPowers.push(currentBase);
-            steps.push(`2^(2^${i}) mod (${modulus}) = (${currentBase})`);
+            steps.push(`${base}^(2^${i}) mod ${modulus} = ${currentBase}`);
         }
         currentBase = (currentBase * currentBase) % modulus;
     }
 
     // Step 3: Combine results
-    steps.push(`Step 2: Combine modular powers`);
+    steps.push(`Step 3: Combine results`);
+    steps.push(`(${base}^${exponent}) mod ${modulus} = (${modularPowers.join(' × ')}) mod ${modulus}`);
     result = modularPowers.reduce((acc, val) => (acc * val) % modulus, 1);
     steps.push(`(${modularPowers.join(' × ')}) mod ${modulus} = ${result}`);
 
-    // Step 4: Manual division explanation
+    // Manual division explanation
     const quotient = Math.floor(result / modulus);
     const remainder = result % modulus;
-    steps.push(`Manual division: ${result} ÷ ${modulus} = ${quotient} remainder ${remainder}`);
+    steps.push(`Manual division:`);
+    steps.push(`${result} ÷ ${modulus} = ${quotient} remainder ${remainder}`);
     steps.push(`${result} = ${quotient} × ${modulus} + ${remainder}`);
 
     // Final result
-    steps.push(`Final Result: ${base}^${exponent} mod ${modulus} = ${remainder}`);
-    console.log(steps); // Debugging output
+    steps.push(`Therefore: ${base}^${exponent} mod ${modulus} = ${remainder}`);
     document.getElementById('modular-result').innerHTML = steps.join('<br>');
 }
 
@@ -534,25 +546,25 @@ function createMatrixInputs() {
         return;
     }
     
-    let html = '<h5>Matrix A</h5>';
+    let htmlA = '<h5>Matrix A</h5>';
     for (let i = 0; i < rows; i++) {
-        html += '<div class="matrix-row">';
+        htmlA += '<div class="matrix-row">';
         for (let j = 0; j < cols; j++) {
-            html += `<input type="number" class="matrix-input" id="matrix-a-${i}-${j}" placeholder="A[${i}][${j}]">`;
+            htmlA += `<input type="number" class="matrix-input" id="matrix-a-${i}-${j}" placeholder="A[${i}][${j}]">`;
         }
-        html += '</div>';
+        htmlA += '</div>';
     }
     
-    html += '<h5 class="mt-3">Matrix B</h5>';
+    let htmlB = '<h5 class="mt-3">Matrix B</h5>';
     for (let i = 0; i < rows; i++) {
-        html += '<div class="matrix-row">';
+        htmlB += '<div class="matrix-row">';
         for (let j = 0; j < cols; j++) {
-            html += `<input type="number" class="matrix-input" id="matrix-b-${i}-${j}" placeholder="B[${i}][${j}]">`;
+            htmlB += `<input type="number" class="matrix-input" id="matrix-b-${i}-${j}" placeholder="B[${i}][${j}]">`;
         }
-        html += '</div>';
+        htmlB += '</div>';
     }
     
-    document.getElementById('matrix-inputs').innerHTML = html;
+    document.getElementById('matrix-inputs-container').innerHTML = htmlA + htmlB;
 }
 
 function calculateMatrixOperation() {
@@ -631,16 +643,18 @@ function calculateMatrixOperation() {
             return;
     }
     
-    // Display result matrix
-    steps.push('<table class="table table-bordered">');
-    for (let i = 0; i < result.length; i++) {
-        steps.push('<tr>');
-        for (let j = 0; j < result[0].length; j++) {
-            steps.push(`<td>${result[i][j]}</td>`);
-        }
-        steps.push('</tr>');
-    }
-    steps.push('</table>');
+    // Display result matrix in the table
+    const matrixDisplay = document.getElementById('matrix-display');
+    matrixDisplay.innerHTML = ''; // Clear previous results
+    result.forEach(row => {
+        const tr = document.createElement('tr');
+        row.forEach(val => {
+            const td = document.createElement('td');
+            td.textContent = val;
+            tr.appendChild(td);
+        });
+        matrixDisplay.appendChild(tr);
+    });
     
     document.getElementById('matrix-result').innerHTML = steps.join('');
 }
