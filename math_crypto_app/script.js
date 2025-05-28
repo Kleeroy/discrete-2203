@@ -263,36 +263,50 @@ function calculateModularExponent() {
     const base = parseInt(document.getElementById('modular-base').value);
     const exponent = parseInt(document.getElementById('modular-exponent').value);
     const modulus = parseInt(document.getElementById('modular-modulus').value);
-    
+
     if (isNaN(base) || isNaN(exponent) || isNaN(modulus)) {
         alert('Please enter valid numbers');
         return;
     }
-    
+
     if (modulus === 1) {
         document.getElementById('modular-result').textContent = 'Result: 0 (any number mod 1 is 0)';
         return;
     }
-    
+
     let result = 1;
     base = base % modulus;
     let steps = [`Calculating ${base}^${exponent} mod ${modulus}:`];
-    
-    while (exponent > 0) {
-        if (exponent % 2 === 1) {
-            steps.push(`Exponent is odd (${exponent}): Multiply result by base (${result} × ${base} = ${result * base})`);
-            result = (result * base) % modulus;
-            steps.push(`Take mod ${modulus}: ${result}`);
+
+    // Step 1: Convert exponent to binary
+    const binaryExponent = exponent.toString(2);
+    steps.push(`Step 1: ${exponent} = ${binaryExponent} (binary)`);
+
+    // Step 2: Calculate modular powers for each binary position
+    let modularPowers = [];
+    let currentBase = base;
+    for (let i = 0; i < binaryExponent.length; i++) {
+        if (binaryExponent[binaryExponent.length - 1 - i] === '1') {
+            modularPowers.push(currentBase);
+            steps.push(`2^(2^${i}) mod (${modulus}) = (${currentBase})`);
         }
-        
-        exponent = Math.floor(exponent / 2);
-        steps.push(`Exponent is now ${exponent}`);
-        
-        base = (base * base) % modulus;
-        steps.push(`Square base and take mod ${modulus}: new base = ${base}`);
+        currentBase = (currentBase * currentBase) % modulus;
     }
-    
-    steps.push(`Final result: ${result}`);
+
+    // Step 3: Combine results
+    steps.push(`Step 2: Combine modular powers`);
+    result = modularPowers.reduce((acc, val) => (acc * val) % modulus, 1);
+    steps.push(`(${modularPowers.join(' × ')}) mod ${modulus} = ${result}`);
+
+    // Step 4: Manual division explanation
+    const quotient = Math.floor(result / modulus);
+    const remainder = result % modulus;
+    steps.push(`Manual division: ${result} ÷ ${modulus} = ${quotient} remainder ${remainder}`);
+    steps.push(`${result} = ${quotient} × ${modulus} + ${remainder}`);
+
+    // Final result
+    steps.push(`Final Result: ${base}^${exponent} mod ${modulus} = ${remainder}`);
+    console.log(steps); // Debugging output
     document.getElementById('modular-result').innerHTML = steps.join('<br>');
 }
 
@@ -457,7 +471,8 @@ function encryptRSA() {
     for (let i = 0; i < message.length; i++) {
         const charCode = message.charCodeAt(i);
         const cipher = modExp(charCode, e, n);
-        steps.push(`'${message[i]}' (${charCode}) → ${charCode}^${e} mod ${n} = ${cipher}`);
+        steps.push(`'${message[i]}'→ ${message}^${e} mod ${n} = ${cipher}`);
+        
         encrypted.push(cipher);
     }
     
@@ -468,30 +483,31 @@ function encryptRSA() {
 function decryptRSA() {
     const encrypted = document.getElementById('rsa-encrypted').value.split(' ').filter(x => x).map(Number);
     const privateKey = document.getElementById('rsa-private-key').value;
-    
+
     if (encrypted.length === 0 || !privateKey) {
         alert('Please enter encrypted message and private key');
         return;
     }
-    
+
     const [d, n] = privateKey.split(',').map(Number);
     if (isNaN(d) || isNaN(n)) {
         alert('Invalid private key format. Use "d,n"');
         return;
     }
-    
-    let decrypted = '';
+
+    let decrypted = [];
     let steps = [`Decrypting message with private key (${d},${n}):`];
-    
+
     for (let i = 0; i < encrypted.length; i++) {
         const cipher = encrypted[i];
-        const charCode = modExp(cipher, d, n);
+        const charCode = modExp(cipher, d, n); 
         steps.push(`${cipher} → ${cipher}^${d} mod ${n} = ${charCode} → '${String.fromCharCode(charCode)}'`);
-        decrypted += String.fromCharCode(charCode);
+        decrypted.push(String.fromCharCode(charCode));
     }
-    
-    document.getElementById('rsa-decryption-result').innerHTML = 
-        steps.join('<br>') + `<br><strong>Decrypted message: ${decrypted}</strong>`;
+
+    const decryptedMessage = decrypted.join('');
+    document.getElementById('rsa-decryption-result').innerHTML =
+        steps.join('<br>') + `<br><strong>Decrypted message: ${decryptedMessage}</strong>`;
 }
 
 function modExp(base, exponent, modulus) {
